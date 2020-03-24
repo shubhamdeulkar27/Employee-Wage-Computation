@@ -14,15 +14,11 @@ monthlyWage=0
 totalWorkingHours=0
 totalWorkingDays=0
 
-while (( $totalWorkingHours<$MAX_WORKING_HOURS && $totalWorkingDays<$MAX_WORKING_DAYS ))
-do
-	(( totalWorkingDays++ ))
+#FUNCTION TO GET WORKING HOURS
+function employeeHours(){
 	checkEmployee=$(( RANDOM%3 ))
-	dailyWage=0
-
-	#CALCULATING DAILY WAGE
 	case $checkEmployee in
-		$IS_FULL_TIME)
+		$IS_FULL_TIME)	
 			EMPLOYEE_HOURS=8
 		;;
 		$IS_PART_TIME)
@@ -35,6 +31,15 @@ do
 			printf "Invalid"
 		;;
 	esac
+	echo $EMPLOYEE_HOURS
+}
+
+#CALCULATING DAILY AND MONTHLY WAGES
+while (( $totalWorkingHours<$MAX_WORKING_HOURS && $totalWorkingDays<$MAX_WORKING_DAYS ))
+do
+	(( totalWorkingDays++ ))
+	EMPLOYEE_HOURS=$( employeeHours )
+	dailyWage=0
 	totalWorkingHours=$(( $totalWorkingHours+$EMPLOYEE_HOURS ))
 	dailyWage=$(( $EMPLOYEE_HOURS*$EMPLOYEE_WAGE_PER_HOUR ))
 	monthlyWage=$(( $monthlyWage+$dailyWage ))
