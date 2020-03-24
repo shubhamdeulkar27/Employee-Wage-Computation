@@ -34,7 +34,8 @@ function employeeHours(){
 	echo $EMPLOYEE_HOURS
 }
 
-#CALCULATING DAILY AND MONTHLY WAGES
+#CALCULATING AND STORING DAILY AND MONTHLY WAGES
+declare -A employeeDailyWage
 while (( $totalWorkingHours<$MAX_WORKING_HOURS && $totalWorkingDays<$MAX_WORKING_DAYS ))
 do
 	(( totalWorkingDays++ ))
@@ -45,3 +46,5 @@ do
 	monthlyWage=$(( $monthlyWage+$dailyWage ))
 	employeeDailyWage[$totalWorkingDays]=$dailyWage
 done
+employeeDailyWage["Monthly_Wage"]=$monthlyWage
+
