@@ -6,12 +6,17 @@ IS_PART_TIME=1
 IS_FULL_TIME=2
 EMPLOYEE_WAGE_PER_HOUR=20
 NUMBER_OF_WORKING_DAYS=20
+MAX_WORKING_HOURS=100
+MAX_WORKING_DAYS=20
 
 #VARIABLES
 monthlyWage=0
+totalWorkingHours=0
+totalWorkingDays=0
 
-for (( day=1 ; day<=$NUMBER_OF_WORKING_DAYS ; day++ ))
+while (( $totalWorkingHours<$MAX_WORKING_HOURS && $totalWorkingDays<$MAX_WORKING_DAYS ))
 do
+	(( totalWorkingDays++ ))
 	checkEmployee=$(( RANDOM%3 ))
 	dailyWage=0
 
@@ -30,6 +35,7 @@ do
 			printf "Invalid"
 		;;
 	esac
+	totalWorkingHours=$(( $totalWorkingHours+$EMPLOYEE_HOURS ))
 	dailyWage=$(( $EMPLOYEE_HOURS*$EMPLOYEE_WAGE_PER_HOUR ))
 	monthlyWage=$(( $monthlyWage+$dailyWage ))
 done
