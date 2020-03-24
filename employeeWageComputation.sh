@@ -43,4 +43,5 @@ do
 	totalWorkingHours=$(( $totalWorkingHours+$EMPLOYEE_HOURS ))
 	dailyWage=$(( $EMPLOYEE_HOURS*$EMPLOYEE_WAGE_PER_HOUR ))
 	monthlyWage=$(( $monthlyWage+$dailyWage ))
+	employeeDailyWage[$totalWorkingDays]=$dailyWage
 done
